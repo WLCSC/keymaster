@@ -1,0 +1,28 @@
+<h1>Key <%= @key.code %></h1>
+
+<h2>People with this key</h2>
+<ul>
+<% @key.people.each do |person| %>
+	<li><%= link_to person.name, person, :class => 'btn btn-mini' %>
+	&nbsp;<%= link_to "&times;".html_safe, "/keys/remove_person?key_id=#{@key.id}&person_id=#{person.id}", :class=>'btn btn-mini btn-danger' %></li>
+<% end %>
+</ul>
+<h2>Give someone else this key</h2>
+<%= form_tag '/keys/add_person', :autocomplete => 'off' do %>
+	<%= person_name_field %>
+	<%= hidden_field_tag :key_id, @key.id %>
+	<%= submit_tag "OK", :class => 'btn btn-primary btn-mini' %>
+<% end %>
+<h2>Notes</h2>
+<% @key.notes.each do |note| %>
+	<p><%= note.content %>&nbsp;<%= link_to "&times;".html_safe, note, :method => 'delete', :class => 'btn btn-mini btn-danger' %></p>
+<% end %>
+<%= form_for Note.new do |f| %>
+	<p>Add new note: <%= f.text_field :content, :placeholder => "What does this key open?" %></p>
+	<%= f.hidden_field :key_id, :value => @key.id %>
+	<p><%= f.submit 'Add Note', :class => 'btn btn-primary' %>
+<% end %>
+<div class="form-actions">
+  <%= link_to 'Back', keys_path, :class => 'btn'  %>
+  <%= link_to 'Delete', key_path(@key), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>

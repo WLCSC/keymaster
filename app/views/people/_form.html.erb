@@ -1,0 +1,89 @@
+<%= nested_form_for @person, :html => { :class => 'form-horizontal', :autocomplete => 'off' } do |f| %>
+<% if @person.errors.any? %>
+<div class="alert alert-error">
+  <h4 class="alert-heading"><%= pluralize(@person.errors.count, "error") %> with form:</h4>
+ 
+  <ul>
+   <% @person.errors.full_messages.each do |msg| %>
+     <li><%= msg %></li>
+   <% end %>
+  </ul>
+</div>
+<% end %>
+
+	
+  <fieldset>
+    <legend><%= controller.action_name.capitalize %> Person</legend>
+
+    <div class="control-group">
+      <%= f.label :first_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :first_name, :class => 'text_field', :placeholder => "What's your name?" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :last_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :last_name, :class => 'text_field', :placeholder => "What's your name?" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :rooms, :class => 'control-label' %>
+      <div class="controls">
+	      <%= f.text_field :rooms, :class => 'text_field', :placeholder => "What rooms do you use?" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+	    <%= f.label :teaching_areas, :class => 'control-label'  %>
+      <div class="controls">
+        <%= f.text_field :teaching_areas, :class => 'text_field', :placeholder => "I have no idea what he wants here." %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :tonado_drill_location, :class => 'control-label' %>
+      <div class="controls">
+	      <%= f.text_field :tornado, :class => 'text_field', :placeholder => "Where do you go for tornado drills?" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :fire_drill_location, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :fire, :class => 'text_field', :placeholder => "Where do you go for fire drills?" %>
+      </div>
+    </div>
+    <% if @person.id %>
+	<div class="control-group">
+	    <label class="control-label" for="person_key_list">Keys</label>
+      <div class="controls">
+	      <ul>
+		<% @person.key_list.lines.each do |line| %>
+			<li><%= line %></li>
+		<% end %>
+	      </ul>
+      </div>
+    </div>
+
+    <% else %>
+    <div class="control-group">
+	    <label class="control-label" for="person_key_list">Keys</label>
+      <div class="controls">
+	      <%= f.fields_for :keys do |f2| %>
+		<%= key_code_field f2 %>
+		<%= f2.text_field :comment, :placeholder => "What does this key open?" %>
+	<% end %>
+	<%= f.link_to_add "Add a key", :keys, :class => "btn btn-info btn-mini" %>
+      </div>
+    </div>
+    <% end %>
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', people_path, :class => 'btn' %>
+    </div>
+  </fieldset>
+<% end %>

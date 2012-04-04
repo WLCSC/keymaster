@@ -1,0 +1,23 @@
+<h1>People</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+	    <th>Name</th>
+	    <th># Keys</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+	  <% @people.sort_by{|p| p.last_name}.each do |person| %>
+      <tr>
+	      <td><%= link_to person.name, person_path(person), :class => 'btn btn-mini' %></td>
+	      <td><%= person.keys.count %></td>
+        <td>
+          <%= link_to 'Edit', edit_person_path(person), :class => 'btn btn-mini' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New', new_person_path, :class => 'btn btn-success' %>

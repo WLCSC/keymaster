@@ -1,0 +1,25 @@
+<h1><%= @person.name %></h1>
+
+<p><b>Rooms: </b><%= @person.rooms || 'Undefined' %></p>
+<p><b>Teaching Areas: </b><%= @person.teaching_areas || 'Undefined' %></p>
+<p><b>Tornado Drill Location: </b><%= @person.tornado || 'Undefined' %></p>
+<p><b>Fire Drill Location: </b><%= @person.fire || 'Undefined'%></p>
+
+<h2>Keys</h2>
+<ul>
+	<% @person.keys.each do |key| %>
+		<li><%= link_to key.code, key, :class => 'btn btn-mini' %>&nbsp;<%= link_to "&times;".html_safe, "/people/remove_key?key_id=#{key.id}&person_id=#{@person.id}", :class=>'btn btn-mini btn-danger' %></li>
+	<% end %>
+</ul>
+
+<h2>Give <%= @person.name %> a new key</h2>
+<%= form_tag '/people/add_key', :autocomplete => 'off' do %>
+	<%= key_code_field %>
+	<%= hidden_field_tag :person_id, @person.id %>
+	<%= submit_tag "OK", :class => 'btn btn-primary btn-mini' %>
+<% end %>
+<div class="form-actions">
+  <%= link_to 'Back', people_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_person_path(@person), :class => 'btn' %>
+  <%= link_to 'Delete', person_path(@person), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>

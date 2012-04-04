@@ -1,0 +1,17 @@
+<%= form_for @key, :html => { :class => 'form-horizontal', :autocomplete => 'off' } do |f| %>
+  <fieldset>
+    <legend><%= controller.action_name.capitalize %> Key</legend>
+
+    <div class="control-group">
+      <%= f.label :code, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :code, :class => 'text_field', :placeholder => "Code engraved on key" %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', keys_path, :class => 'btn' %>
+    </div>
+  </fieldset>
+<% end %>

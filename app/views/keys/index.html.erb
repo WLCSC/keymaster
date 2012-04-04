@@ -1,0 +1,19 @@
+<h1>Keys</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th># Distributed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @keys.each do |key| %>
+      <tr>
+	      <td><%= link_to key.code, key_path(key), :class => 'btn btn-mini' %></td>
+        <td><%= key.people.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New', new_key_path, :class => 'btn btn-success' %>
