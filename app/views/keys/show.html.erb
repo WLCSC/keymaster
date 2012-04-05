@@ -17,10 +17,10 @@
 <% @key.notes.each do |note| %>
 	<p><%= note.content %>&nbsp;<%= link_to "&times;".html_safe, note, :method => 'delete', :class => 'btn btn-mini btn-danger' %></p>
 <% end %>
-<%= form_for Note.new do |f| %>
-	<p>Add new note: <%= f.text_field :content, :placeholder => "What does this key open?" %></p>
+<%= form_for Note.new, :html => {:class => 'form-inline'} do |f| %>
+Add new note: <%= f.text_field :content, :placeholder => "What does this key open?" %>
 	<%= f.hidden_field :key_id, :value => @key.id %>
-	<p><%= f.submit 'Add Note', :class => 'btn btn-primary' %>
+	<%= f.submit 'Add Note', :class => 'btn btn-primary' %>
 <% end %>
 <div class="form-actions">
   <%= link_to 'Back', keys_path, :class => 'btn'  %>

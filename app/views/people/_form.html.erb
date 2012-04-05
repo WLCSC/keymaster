@@ -37,23 +37,23 @@
     </div>
 
     <div class="control-group">
-	    <%= f.label :teaching_areas, :class => 'control-label'  %>
+	    <%= f.label :subject_areas, :class => 'control-label'  %>
       <div class="controls">
-        <%= f.text_field :teaching_areas, :class => 'text_field', :placeholder => "I have no idea what he wants here." %>
+        <%= f.text_field :teaching_areas, :class => 'text_field', :placeholder => "What subjects do you teach?" %>
       </div>
     </div>
 
     <div class="control-group">
       <%= f.label :tonado_drill_location, :class => 'control-label' %>
       <div class="controls">
-	      <%= f.text_field :tornado, :class => 'text_field', :placeholder => "Where do you go for tornado drills?" %>
+	      <%= f.text_area :tornado, :class => 'text_field', :placeholder => "Where do you go for tornado drills?  Example: stay in my classroom.", :size=>"20x5" %>
       </div>
     </div>
 
     <div class="control-group">
       <%= f.label :fire_drill_location, :class => 'control-label' %>
       <div class="controls">
-        <%= f.text_field :fire, :class => 'text_field', :placeholder => "Where do you go for fire drills?" %>
+	      <%= f.text_area :fire, :class => 'text_field', :placeholder => "Where do you go for fire drills?  Example:  go right outside my room, proceed to Grant St. doors.", :size=>"20x5" %>
       </div>
     </div>
     <% if @person.id %>
