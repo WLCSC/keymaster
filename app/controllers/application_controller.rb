@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-	USER, PASSWORD = "keymaster","theywon'tletmehaveamaster"
+	USER, PASSWORD = APP_CONFIG[:username] ,APP_CONFIG[:password]
   protect_from_forgery
   before_filter :authentication_check
 

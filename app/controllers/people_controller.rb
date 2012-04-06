@@ -52,6 +52,9 @@ class PeopleController < ApplicationController
 		master = kset.delete_at(0)
 		kset.each do |s|
 			s.notes.each do |n|
+				if n.content = ""
+					n.delete
+				end
 				begin
 					n.key = master unless (master.notes.where(:content => n.content).count > 0)
 					n.save

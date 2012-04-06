@@ -1,0 +1,10 @@
+development:
+  username: keymaster
+  password: password
+
+test:
+  domain: test.host
+
+production:
+  username: keymaster
+  password: password
